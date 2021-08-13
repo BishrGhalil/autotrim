@@ -22,14 +22,15 @@ autotrim <video> <timestamps-textfile>
 ## Example
 Using the same text file above
 ```
-autotrim "Data Structures and algos" "timestamps.text"
+autotrim "Data_Structures_and_algos.mp4" "timestamps.text"
 ```
 ### Output
 First It will ask You to enter a title for the new folder.
 ```
-Enter a title:
+Enter a title: DSA
 ```
 And that's it.
+The DSA folder will contain:
 ```
 01 Introduction to Big-O.mp4
 02 Dynamic and Static Arrays.mp4
