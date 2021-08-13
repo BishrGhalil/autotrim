@@ -1,0 +1,36 @@
+#!/bin/bash
+# These script uses ffmpeg to trim a long
+# video into titles ordered parts.
+# Author: Bishr Ghalil
+
+# Help and usage
+if [[ $# != 2 ]]
+then
+        echo -e "\033[91m" "Usage: <video-path> <timestamp-textfile>" "\033[0m"
+        exit -1;
+fi
+
+if ! $(echo "$1" | grep -E -q ".+\.(mp4|mkv|avi|mov)") && [[ -f $1 ]]
+then
+        echo -e "\033[91m" "This is not a valid video" "\033[0m"
+        exit -1;
+fi
+if ! [ -f $2 ]
+then
+        echo -e "\033[91m" "This is not a valid text file" "\033[0m"
+else
+        echo -n "Enter a title : "
+        read Title
+        path="$(pwd)/"$Title
+        $(mkdir "$path")
+        lines_number=$(wc -l $2 | cut -d' ' -f1)
+        prev="00:00:00"
+        for i in $(seq 1 $lines_number)
+        do
+                timestamp=$(sed -n $i\p $2 | grep -o '[0-9]*:*[0-9]*:[0-9]*')
+                title=$(cut -d' ' -f2- $2 | sed -n $i\p )
+                filename=$(printf "$path/%02d $title.mp4" $i) 
+                ffmpeg -i "$1" -ss $prev -to "$timestamp" -c copy "$filename"
+                prev=$timestamp
+        done
+fi
