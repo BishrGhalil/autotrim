@@ -6,6 +6,7 @@ autotrim <video> <timestamps-textfile>
 ```
 ### Timestamps-text-file Example:
 ##### This script uses REGEX to identify timestamps:
+```
 04:28 Introduction to Big-O
 17:00) Dynamic and Static Arrays
 0:27:40) Dynamic Array Code
@@ -17,6 +18,7 @@ autotrim <video> <timestamps-textfile>
 (1:15:58) Queue Introduction
 (1:22:03) Queue Implementation
 (1:27:26) Queue Code
+```
 
 ### Install
 Just clone the repo and add the script to your path.
