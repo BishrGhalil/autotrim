@@ -46,4 +46,8 @@ The DSA folder will contain:
 ```
 
 ### Install
-Just clone the repo and add the script to your path.
+```bash
+git clone https://github.com/BishrGhalil/autotrim.git
+cd autotrim
+sudo make
+```

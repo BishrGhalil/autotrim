@@ -6,19 +6,21 @@
 # Help and usage
 if [[ $# != 2 ]]
 then
-        echo -e "\033[91m" "Usage: <video-path> <timestamp-textfile>" "\033[0m"
+        echo -e "\033[91m" "Usage: <(video/audio)-path> <timestamp-textfile>" "\033[0m"
         exit -1;
 fi
 
-if ! $(echo "$1" | grep -E -q ".+\.(mp4|mkv|avi|mov)") && [[ -f $1 ]]
+if ! $(echo "$1" | grep -E -q ".+\.(mp2|mp3|wav|webp|mpc|mp4|mkv|avi|mov)") && [[ -f $1 ]]
 then
-        echo -e "\033[91m" "This is not a valid video" "\033[0m"
+        echo -e "\033[91m" "This is not a valid audio or video file." "\033[0m"
         exit -1;
 fi
 if ! [ -f $2 ]
 then
         echo -e "\033[91m" "This is not a valid text file" "\033[0m"
 else
+        format=$(echo "$1" | grep -E -q ".+\.(mp2|mp3|wav|webp|mpc|mp4|mkv|avi|mov)")
+        echo $format
         echo -n "Enter a title : "
         read Title
         path="$(pwd)/"$Title
